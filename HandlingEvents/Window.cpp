@@ -124,6 +124,25 @@ LRESULT Window::HandleEvents(UINT msg, WPARAM wParam, LPARAM lParam)
 			}
 			return 0;
 		}
+		case WM_SIZE:
+		{
+			std::wstringstream ss;
+			if (wParam == SIZE_MAXIMIZED)
+			{
+				ss << "Window Maximized - ";
+			}
+			else
+			{
+				ss << "Window Resized - ";
+			}
+
+			int width = LOWORD(lParam);
+			int height = HIWORD(lParam);
+			ss << "Width: " << width << ", Height: " << height << '\n';
+
+			OutputDebugString(ss.str().c_str());
+			return 0;
+		}
 		case WM_DESTROY:
 			PostQuitMessage(0);
 			break;
