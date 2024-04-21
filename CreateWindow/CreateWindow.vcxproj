@@ -24,6 +24,7 @@
     <ProjectGuid>{0d40077d-0813-4fcf-adee-9eae584687a7}</ProjectGuid>
     <RootNamespace>RoveCoderWin32Samples</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>CreateWindow</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
