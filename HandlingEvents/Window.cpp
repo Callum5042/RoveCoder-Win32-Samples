@@ -108,6 +108,22 @@ LRESULT Window::HandleEvents(UINT msg, WPARAM wParam, LPARAM lParam)
 
 			return 0;
 		}
+		case WM_ACTIVATE:
+		{
+			if (LOWORD(wParam) == WA_ACTIVE)
+			{
+				OutputDebugString(L"Window activated by system\n");
+			}
+			else if (LOWORD(wParam) == WA_CLICKACTIVE)
+			{
+				OutputDebugString(L"Window activated by click\n");
+			}
+			else if (LOWORD(wParam) == WA_INACTIVE)
+			{
+				OutputDebugString(L"Window inactive\n");
+			}
+			return 0;
+		}
 		case WM_DESTROY:
 			PostQuitMessage(0);
 			break;
