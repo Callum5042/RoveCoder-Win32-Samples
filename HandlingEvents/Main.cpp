@@ -6,7 +6,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
 	Window window;
-	window.Create(L"My Window");
+	window.Create(L"Win32 Samples - Handling Events");
 
 	// Main loop
 	MSG msg = {};
