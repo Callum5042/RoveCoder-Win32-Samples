@@ -84,7 +84,29 @@ LRESULT Window::HandleEvents(UINT msg, WPARAM wParam, LPARAM lParam)
 			}
 
 			MessageBox(NULL, ss.str().c_str(), L"Mouse Down", MB_OK);
-			break;
+			return 0;
+		}
+		case WM_KEYDOWN:
+		{
+			int repeat_count = LOWORD(lParam);
+			bool key_repeat = (HIWORD(lParam) & KF_REPEAT) == KF_REPEAT;
+
+			if (wParam == 'W' && !key_repeat)
+			{
+				std::wstringstream ss;
+				ss << "W is down x" << repeat_count << '\n';
+
+				OutputDebugString(ss.str().c_str());
+			}
+			else if (wParam == VK_SPACE)
+			{
+				std::wstringstream ss;
+				ss << "Space is down x" << repeat_count << '\n';
+
+				OutputDebugString(ss.str().c_str());
+			}
+
+			return 0;
 		}
 		case WM_DESTROY:
 			PostQuitMessage(0);
