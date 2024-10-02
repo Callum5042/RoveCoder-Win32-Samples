@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -30,4 +31,14 @@ private:
 
 	HMENU m_OptionsMenuItem = NULL;
 	static const UINT m_MenuOptionsToggleCheckboxId = 201;
+	static const UINT m_MenuOptionsDisabledId = 202;
+	static const UINT m_MenuOptionsToggleDisabledId = 203;
+
+	HMENU m_SubmenuItem = NULL;
+
+	HMENU m_Submenu1 = NULL;
+	static const UINT m_SubMenu1Item = 3100;
+
+	HMENU m_Submenu2 = NULL;
+	static const UINT m_SubMenu2Item = 4100;
 };

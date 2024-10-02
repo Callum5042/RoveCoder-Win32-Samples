@@ -58,7 +58,34 @@ void Window::CreateMenuBar()
 	// Options
 	m_OptionsMenuItem = CreateMenu();
 	AppendMenuW(m_OptionsMenuItem, MF_STRING | MF_CHECKED, m_MenuOptionsToggleCheckboxId, L"Toggle Checkbox");
+	AppendMenuW(m_FileMenuItem, MF_SEPARATOR, NULL, NULL);
+	AppendMenuW(m_OptionsMenuItem, MF_STRING | MF_DISABLED, m_MenuOptionsDisabledId, L"Disabled");
+	AppendMenuW(m_OptionsMenuItem, MF_STRING, m_MenuOptionsToggleDisabledId, L"Toggle Disabled");
 	AppendMenuW(m_MenuBar, MF_POPUP, reinterpret_cast<UINT_PTR>(m_OptionsMenuItem), L"&Options");
+
+	// Submenus
+	m_SubmenuItem = CreateMenu();
+	AppendMenuW(m_MenuBar, MF_POPUP, reinterpret_cast<UINT_PTR>(m_SubmenuItem), L"&Submenus");
+
+	// Submenu 1
+	m_Submenu1 = CreateMenu();
+	AppendMenuW(m_SubmenuItem, MF_POPUP, reinterpret_cast<UINT_PTR>(m_Submenu1), L"Sub Menu 1");
+
+	for (int i = 1; i <= 10; ++i)
+	{
+		std::wstring title = L"Item " + std::to_wstring(i);
+		AppendMenuW(m_Submenu1, MF_STRING, m_SubMenu1Item + i, title.c_str());
+	}
+
+	// Submenu 2
+	m_Submenu2 = CreateMenu();
+	AppendMenuW(m_SubmenuItem, MF_POPUP, reinterpret_cast<UINT_PTR>(m_Submenu2), L"Sub Menu 2");
+
+	for (int i = 1; i <= 10; ++i)
+	{
+		std::wstring title = L"Item " + std::to_wstring(i);
+		AppendMenuW(m_Submenu2, MF_STRING, m_SubMenu2Item + i, title.c_str());
+	}
 
 	// Assign menubar to window
 	SetMenu(m_Hwnd, m_MenuBar);
@@ -134,6 +161,25 @@ void Window::HandleMenu(UINT msg, WPARAM wParam, LPARAM lParam)
 			else
 			{
 				CheckMenuItem(m_OptionsMenuItem, m_MenuOptionsToggleCheckboxId, MF_BYCOMMAND | MF_CHECKED);
+			}
+
+			break;
+		}
+		// Disabled
+		case m_MenuOptionsDisabledId:
+			MessageBox(NULL, L"Disabled MenuItem", L"Menu Clicked", MB_OK);
+			break;
+		// Toggle Disabled
+		case m_MenuOptionsToggleDisabledId:
+		{
+			UINT flag = GetMenuState(m_OptionsMenuItem, m_MenuOptionsDisabledId, MF_BYCOMMAND);
+			if ((flag & MF_DISABLED) == MF_DISABLED)
+			{
+				EnableMenuItem(m_OptionsMenuItem, m_MenuOptionsDisabledId, MF_ENABLED);
+			}
+			else
+			{
+				EnableMenuItem(m_OptionsMenuItem, m_MenuOptionsDisabledId, MF_DISABLED);
 			}
 
 			break;
