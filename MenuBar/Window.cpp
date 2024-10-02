@@ -58,7 +58,7 @@ void Window::CreateMenuBar()
 	// Options
 	m_OptionsMenuItem = CreateMenu();
 	AppendMenuW(m_OptionsMenuItem, MF_STRING | MF_CHECKED, m_MenuOptionsToggleCheckboxId, L"Toggle Checkbox");
-	AppendMenuW(m_FileMenuItem, MF_SEPARATOR, NULL, NULL);
+	AppendMenuW(m_OptionsMenuItem, MF_SEPARATOR, NULL, NULL);
 	AppendMenuW(m_OptionsMenuItem, MF_STRING | MF_DISABLED, m_MenuOptionsDisabledId, L"Disabled");
 	AppendMenuW(m_OptionsMenuItem, MF_STRING, m_MenuOptionsToggleDisabledId, L"Toggle Disabled");
 	AppendMenuW(m_MenuBar, MF_POPUP, reinterpret_cast<UINT_PTR>(m_OptionsMenuItem), L"&Options");
