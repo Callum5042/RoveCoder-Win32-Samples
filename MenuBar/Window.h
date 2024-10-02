@@ -27,4 +27,7 @@ private:
 	HMENU m_FileMenuItem = NULL;
 	static const UINT m_MenuFileOpenId = 101;
 	static const UINT m_MenuFileExitId = 102;
+
+	HMENU m_OptionsMenuItem = NULL;
+	static const UINT m_MenuOptionsToggleCheckboxId = 201;
 };

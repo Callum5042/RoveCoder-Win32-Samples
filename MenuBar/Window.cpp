@@ -55,6 +55,11 @@ void Window::CreateMenuBar()
 	AppendMenuW(m_FileMenuItem, MF_STRING, m_MenuFileExitId, L"Exit");
 	AppendMenuW(m_MenuBar, MF_POPUP, reinterpret_cast<UINT_PTR>(m_FileMenuItem), L"&File");
 
+	// Options
+	m_OptionsMenuItem = CreateMenu();
+	AppendMenuW(m_OptionsMenuItem, MF_STRING | MF_CHECKED, m_MenuOptionsToggleCheckboxId, L"Toggle Checkbox");
+	AppendMenuW(m_MenuBar, MF_POPUP, reinterpret_cast<UINT_PTR>(m_OptionsMenuItem), L"&Options");
+
 	// Assign menubar to window
 	SetMenu(m_Hwnd, m_MenuBar);
 }
@@ -118,5 +123,20 @@ void Window::HandleMenu(UINT msg, WPARAM wParam, LPARAM lParam)
 		case m_MenuFileOpenId:
 			MessageBox(NULL, L"File Open", L"Menu Clicked", MB_OK);
 			break;
+		// Checkbox Menu
+		case m_MenuOptionsToggleCheckboxId:
+		{
+			UINT flag = GetMenuState(m_OptionsMenuItem, m_MenuOptionsToggleCheckboxId, MF_BYCOMMAND);
+			if ((flag & MF_CHECKED) == MF_CHECKED)
+			{
+				CheckMenuItem(m_OptionsMenuItem, m_MenuOptionsToggleCheckboxId, MF_BYCOMMAND | MF_UNCHECKED);
+			}
+			else
+			{
+				CheckMenuItem(m_OptionsMenuItem, m_MenuOptionsToggleCheckboxId, MF_BYCOMMAND | MF_CHECKED);
+			}
+
+			break;
+		}
 	}
 }
