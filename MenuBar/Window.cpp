@@ -9,9 +9,6 @@ Window::Window()
 Window::~Window()
 {
 	DestroyWindow(m_Hwnd);
-
-	DestroyMenu(m_FileMenuItem);
-	DestroyMenu(m_MenuBar);
 }
 
 bool Window::Create(const std::wstring& title)
@@ -54,6 +51,8 @@ void Window::CreateMenuBar()
 	// Create file popup menu
 	m_FileMenuItem = CreateMenu();
 	AppendMenuW(m_FileMenuItem, MF_STRING, m_MenuFileOpenId, L"Open");
+	AppendMenuW(m_FileMenuItem, MF_SEPARATOR, NULL, NULL);
+	AppendMenuW(m_FileMenuItem, MF_STRING, m_MenuFileExitId, L"Exit");
 	AppendMenuW(m_MenuBar, MF_POPUP, reinterpret_cast<UINT_PTR>(m_FileMenuItem), L"&File");
 
 	// Assign menubar to window

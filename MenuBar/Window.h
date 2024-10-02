@@ -26,4 +26,5 @@ private:
 
 	HMENU m_FileMenuItem = NULL;
 	static const UINT m_MenuFileOpenId = 101;
+	static const UINT m_MenuFileExitId = 102;
 };
